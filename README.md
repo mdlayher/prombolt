@@ -46,3 +46,12 @@ bolt_bucket_depth{bucket="foo",database="promboltd.db"} 1
 # TYPE bolt_bucket_inlined_buckets gauge
 bolt_bucket_inlined_buckets{bucket="foo",database="promboltd.db"} 1
 ```
+
+FAQ
+---
+
+**Q: can `prombolt` provide metrics for nested/child buckets?**
+
+At this time, `prombolt` is unable to retrieve metrics for nested/child buckets,
+because Bolt does not currently provide functionality to iterate nested/child
+buckets within a parent bucket.  See [boltdb/bolt#603](https://github.com/boltdb/bolt/issues/603).
