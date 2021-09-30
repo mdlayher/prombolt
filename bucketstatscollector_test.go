@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/boltdb/bolt"
 	"github.com/prometheus/client_golang/prometheus"
+	bolt "go.etcd.io/bbolt"
 )
 
 func TestBucketStatsCollector(t *testing.T) {

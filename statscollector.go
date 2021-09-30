@@ -1,8 +1,8 @@
 package prombolt
 
 import (
-	"github.com/boltdb/bolt"
 	"github.com/prometheus/client_golang/prometheus"
+	bolt "go.etcd.io/bbolt"
 )
 
 var _ prometheus.Collector = &statsCollector{}

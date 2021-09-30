@@ -4,8 +4,8 @@ package prombolt
 import (
 	"sync"
 
-	"github.com/boltdb/bolt"
 	"github.com/prometheus/client_golang/prometheus"
+	bolt "go.etcd.io/bbolt"
 )
 
 const (
