@@ -198,39 +198,111 @@ func (c *statsCollector) Describe(ch chan<- *prometheus.Desc) {
 func (c *statsCollector) Collect(ch chan<- prometheus.Metric) {
 	s := c.ss.Stats()
 
-	ch <- prometheus.MustNewConstMetric(c.FreelistFreePages, prometheus.GaugeValue, float64(s.FreePageN))
+	ch <- prometheus.MustNewConstMetric(
+		c.FreelistFreePages,
+		prometheus.GaugeValue,
+		float64(s.FreePageN),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.FreelistPendingPages, prometheus.GaugeValue, float64(s.PendingPageN))
+	ch <- prometheus.MustNewConstMetric(
+		c.FreelistPendingPages,
+		prometheus.GaugeValue,
+		float64(s.PendingPageN),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.FreelistFreePageAllocatedBytes, prometheus.GaugeValue, float64(s.FreeAlloc))
+	ch <- prometheus.MustNewConstMetric(
+		c.FreelistFreePageAllocatedBytes,
+		prometheus.GaugeValue,
+		float64(s.FreeAlloc),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.FreelistInUseBytes, prometheus.GaugeValue, float64(s.FreelistInuse))
+	ch <- prometheus.MustNewConstMetric(
+		c.FreelistInUseBytes,
+		prometheus.GaugeValue,
+		float64(s.FreelistInuse),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.ReadTxTotal, prometheus.CounterValue, float64(s.TxN))
+	ch <- prometheus.MustNewConstMetric(
+		c.ReadTxTotal,
+		prometheus.CounterValue,
+		float64(s.TxN),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.OpenReadTx, prometheus.GaugeValue, float64(s.OpenTxN))
+	ch <- prometheus.MustNewConstMetric(
+		c.OpenReadTx,
+		prometheus.GaugeValue,
+		float64(s.OpenTxN),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxPagesAllocatedTotal, prometheus.CounterValue, float64(s.TxStats.PageCount))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxPagesAllocatedTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.PageCount),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxPagesAllocatedBytesTotal, prometheus.CounterValue, float64(s.TxStats.PageAlloc))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxPagesAllocatedBytesTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.PageAlloc),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxCursorsTotal, prometheus.CounterValue, float64(s.TxStats.CursorCount))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxCursorsTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.CursorCount),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodesAllocatedTotal, prometheus.CounterValue, float64(s.TxStats.NodeCount))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodesAllocatedTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.NodeCount),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodesDereferencedTotal, prometheus.CounterValue, float64(s.TxStats.NodeDeref))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodesDereferencedTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.NodeDeref),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodeRebalancesTotal, prometheus.CounterValue, float64(s.TxStats.Rebalance))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodeRebalancesTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.Rebalance),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodeRebalanceSecondsTotal, prometheus.CounterValue, s.TxStats.RebalanceTime.Seconds())
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodeRebalanceSecondsTotal,
+		prometheus.CounterValue,
+		s.TxStats.RebalanceTime.Seconds(),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodesSplitTotal, prometheus.CounterValue, float64(s.TxStats.Split))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodesSplitTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.Split),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodesSpilledTotal, prometheus.CounterValue, float64(s.TxStats.Spill))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodesSpilledTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.Spill),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxNodesSpilledSecondsTotal, prometheus.CounterValue, s.TxStats.SpillTime.Seconds())
+	ch <- prometheus.MustNewConstMetric(
+		c.TxNodesSpilledSecondsTotal,
+		prometheus.CounterValue,
+		s.TxStats.SpillTime.Seconds(),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxWritesTotal, prometheus.CounterValue, float64(s.TxStats.Write))
+	ch <- prometheus.MustNewConstMetric(
+		c.TxWritesTotal,
+		prometheus.CounterValue,
+		float64(s.TxStats.Write),
+	)
 
-	ch <- prometheus.MustNewConstMetric(c.TxWriteSecondsTotal, prometheus.CounterValue, s.TxStats.WriteTime.Seconds())
+	ch <- prometheus.MustNewConstMetric(
+		c.TxWriteSecondsTotal,
+		prometheus.CounterValue,
+		s.TxStats.WriteTime.Seconds(),
+	)
 }
