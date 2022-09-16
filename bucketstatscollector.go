@@ -37,7 +37,7 @@ func newBucketStatsCollector(name string, db *bolt.DB) *bucketStatsCollector {
 	)
 
 	var (
-		labels = []string{"database", "bucket"}
+		labels = []string{"bucket"}
 	)
 
 	return &bucketStatsCollector{
@@ -51,91 +51,91 @@ func newBucketStatsCollector(name string, db *bolt.DB) *bucketStatsCollector {
 			prometheus.BuildFQName(namespace, subsystem, "logical_branch_pages"),
 			"Number of logical branch pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		PhysicalBranchOverflowPages: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "physical_branch_overflow_pages"),
 			"Number of physical branch overflow pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		LogicalLeafPages: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "logical_leaf_pages"),
 			"Number of logical leaf pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		PhysicalLeafOverflowPages: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "physical_leaf_overflow_pages"),
 			"Number of physical leaf overflow pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		Keys: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "keys"),
 			"Number of key/value pairs in a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		Depth: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "depth"),
 			"Number of levels in B+ tree for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		PhysicalBranchPagesAllocatedBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "physical_branch_pages_allocated_bytes"),
 			"Number of bytes allocated in physical branch pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		PhysicalBranchPagesInUseBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "physical_branch_pages_in_use_bytes"),
 			"Number of bytes in use in physical branch pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		PhysicalLeafPagesAllocatedBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "physical_leaf_pages_allocated_bytes"),
 			"Number of bytes allocated in physical leaf pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		PhysicalLeafPagesInUseBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "physical_leaf_pages_in_use_bytes"),
 			"Number of bytes in use in physical leaf pages for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		Buckets: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "buckets"),
 			"Number of buckets within a bucket, including the top bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		InlinedBuckets: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "inlined_buckets"),
 			"Number of inlined buckets for a bucket.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		InlinedBucketsInUseBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, subsystem, "inlined_buckets_in_use_bytes"),
 			"Number of bytes in use for inlined buckets.",
 			labels,
-			nil,
+			prometheus.Labels{"database": name},
 		),
 	}
 }
@@ -191,7 +191,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.LogicalBranchPages,
 			prometheus.GaugeValue,
 			float64(s.BranchPageN),
-			c.name,
 			bucket,
 		)
 
@@ -199,7 +198,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.PhysicalBranchOverflowPages,
 			prometheus.GaugeValue,
 			float64(s.BranchOverflowN),
-			c.name,
 			bucket,
 		)
 
@@ -207,7 +205,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.LogicalLeafPages,
 			prometheus.GaugeValue,
 			float64(s.LeafPageN),
-			c.name,
 			bucket,
 		)
 
@@ -215,7 +212,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.PhysicalLeafOverflowPages,
 			prometheus.GaugeValue,
 			float64(s.LeafOverflowN),
-			c.name,
 			bucket,
 		)
 
@@ -223,7 +219,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.Keys,
 			prometheus.GaugeValue,
 			float64(s.KeyN),
-			c.name,
 			bucket,
 		)
 
@@ -231,7 +226,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.Depth,
 			prometheus.GaugeValue,
 			float64(s.Depth),
-			c.name,
 			bucket,
 		)
 
@@ -239,7 +233,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.PhysicalBranchPagesAllocatedBytes,
 			prometheus.GaugeValue,
 			float64(s.BranchAlloc),
-			c.name,
 			bucket,
 		)
 
@@ -247,7 +240,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.PhysicalBranchPagesInUseBytes,
 			prometheus.GaugeValue,
 			float64(s.BranchInuse),
-			c.name,
 			bucket,
 		)
 
@@ -255,7 +247,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.PhysicalLeafPagesAllocatedBytes,
 			prometheus.GaugeValue,
 			float64(s.LeafAlloc),
-			c.name,
 			bucket,
 		)
 
@@ -263,7 +254,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.PhysicalLeafPagesInUseBytes,
 			prometheus.GaugeValue,
 			float64(s.LeafInuse),
-			c.name,
 			bucket,
 		)
 
@@ -271,7 +261,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.Buckets,
 			prometheus.GaugeValue,
 			float64(s.BucketN),
-			c.name,
 			bucket,
 		)
 
@@ -279,7 +268,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.InlinedBuckets,
 			prometheus.GaugeValue,
 			float64(s.InlineBucketN),
-			c.name,
 			bucket,
 		)
 
@@ -287,7 +275,6 @@ func (c *bucketStatsCollector) Collect(ch chan<- prometheus.Metric) {
 			c.InlinedBucketsInUseBytes,
 			prometheus.GaugeValue,
 			float64(s.InlineBucketInuse),
-			c.name,
 			bucket,
 		)
 
