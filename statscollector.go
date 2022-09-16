@@ -56,109 +56,127 @@ func newStatsCollector(name string, ss statser) *statsCollector {
 		FreelistFreePages: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, dbSubsystem, "freelist_free_pages"),
 			"Number of free pages on the freelist.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		FreelistPendingPages: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, dbSubsystem, "freelist_pending_pages"),
 			"Number of pending pages on the freelist.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		FreelistFreePageAllocatedBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, dbSubsystem, "freelist_free_page_allocated_bytes"),
 			"Number of bytes allocated in free pages on the freelist.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		FreelistInUseBytes: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, dbSubsystem, "freelist_in_use_bytes"),
 			"Number of bytes in use by the freelist.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		ReadTxTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, dbSubsystem, "read_tx_total"),
 			"Total number of started read transactions for the database.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		OpenReadTx: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, dbSubsystem, "open_read_tx"),
 			"Number of currently open read-only transactions for the database.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxPagesAllocatedTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "pages_allocated_total"),
 			"Total number of transaction page allocations.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxPagesAllocatedBytesTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "pages_allocated_bytes_total"),
 			"Total number of bytes allocated for transaction pages.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxCursorsTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "cursors_total"),
 			"Total number of cursors created by transactions",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodesAllocatedTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "nodes_allocated_total"),
 			"Total number of nodes allocated by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodesDereferencedTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "nodes_dereferenced_total"),
 			"Total number of nodes dereferenced by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodeRebalancesTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "node_rebalances_total"),
 			"Total number of node rebalances by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodeRebalanceSecondsTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "node_rebalance_seconds_total"),
 			"Total amount of time in seconds spent rebalancing nodes by transactions",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodesSplitTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "nodes_split_total"),
 			"Total number of nodes split by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodesSpilledTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "nodes_spilled_total"),
 			"Total number of nodes spilled by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxNodesSpilledSecondsTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "nodes_spilled_seconds_total"),
 			"Total amount of time in seconds spent spilling nodes by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxWritesTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "writes_total"),
 			"Total number of writes to disk performed by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 
 		TxWriteSecondsTotal: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, txSubsystem, "write_seconds_total"),
 			"Total amount of time in seconds spent writing to disk by transactions.",
-			nil, prometheus.Labels{"database": name},
+			nil,
+			prometheus.Labels{"database": name},
 		),
 	}
 }
